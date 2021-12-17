@@ -1,3 +1,10 @@
+# Note:
+This is a project I learned from the Python Engineer channel from Youtube. A great course. Because the code is very complete, I didn't edit much, I edited the data, model and loss function.
+
+
+---------------Here is the original description---------------
+
+
 # Implementation of a Contextual Chatbot in PyTorch.  
 Simple chatbot implementation with PyTorch. 
 
