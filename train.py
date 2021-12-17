@@ -88,6 +88,9 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = NeuralNet(input_size, hidden_size, output_size).to(device)
 
 # Loss and optimizer
+
+#I have tried many different losses
+#But cross entropy loss is the best
 criterion1 = nn.CrossEntropyLoss()
 #criterion2 = nn.L1Loss()
 
