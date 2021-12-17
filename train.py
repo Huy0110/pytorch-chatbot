@@ -88,7 +88,11 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = NeuralNet(input_size, hidden_size, output_size).to(device)
 
 # Loss and optimizer
-criterion = nn.CrossEntropyLoss()
+criterion1 = nn.CrossEntropyLoss()
+#criterion2 = nn.L1Loss()
+
+#criterion = criterion1 + criterion2
+
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 # Train the model
@@ -101,18 +105,20 @@ for epoch in range(num_epochs):
         outputs = model(words)
         # if y would be one-hot, we must apply
         # labels = torch.max(labels, 1)[1]
-        loss = criterion(outputs, labels)
+        loss1 = criterion1(outputs, labels)
+        #loss2 = criterion2(outputs.T, labels)
         
         # Backward and optimize
         optimizer.zero_grad()
-        loss.backward()
+        loss1.backward()
+        #loss2.backward()
         optimizer.step()
         
     if (epoch+1) % 100 == 0:
-        print (f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+        print (f'Epoch [{epoch+1}/{num_epochs}],Loss1: {loss1.item():.4f}')
 
 
-print(f'final loss: {loss.item():.4f}')
+print(f'final loss1: {loss1.item():.4f}')
 
 data = {
 "model_state": model.state_dict(),
